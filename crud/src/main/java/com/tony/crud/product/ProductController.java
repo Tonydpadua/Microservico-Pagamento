@@ -59,7 +59,7 @@ public class ProductController {
             consumes = {"application/json", "application/xml", "application/x-yaml",})
     public ProductDTO save(@RequestBody ProductDTO productDTO) {
         ProductDTO productDTOCreated = this.productService.save(productDTO);
-        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTO.getId())).withSelfRel());
+        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTOCreated.getId())).withSelfRel());
         return productDTOCreated;
     }
 
