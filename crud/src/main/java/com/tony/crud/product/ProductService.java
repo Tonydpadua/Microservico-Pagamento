@@ -1,7 +1,7 @@
 package com.tony.crud.product;
 
 import com.tony.crud.exceptions.ObjectNotFoundException;
-import com.tony.crud.product.dto.ProductVO;
+import com.tony.crud.product.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,24 +15,24 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public ProductVO create(ProductVO productVO) {
-        return ProductVO.create(this.productRepository.save(Product.create(productVO)));
+    public ProductDTO create(ProductDTO productDTO) {
+        return ProductDTO.create(this.productRepository.save(Product.create(productDTO)));
     }
 
-    public Page<ProductVO> findAll(Pageable pageable) {
+    public Page<ProductDTO> findAll(Pageable pageable) {
         return this.productRepository.findAll(pageable).map(this::convertToProductVO);
     }
 
-    public ProductVO findById(Long id) {
-        return ProductVO.create(this.productRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Product not found. Id: " + id)));
+    public ProductDTO findById(Long id) {
+        return ProductDTO.create(this.productRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Product not found. Id: " + id)));
     }
 
-    public ProductVO update(ProductVO productVO) {
-        final Optional<Product> optionalProduct = this.productRepository.findById(productVO.getId());
+    public ProductDTO update(ProductDTO productDTO) {
+        final Optional<Product> optionalProduct = this.productRepository.findById(productDTO.getId());
         if (!optionalProduct.isPresent()) {
-            throw new ObjectNotFoundException("Product not found. Id: " + productVO.getId());
+            throw new ObjectNotFoundException("Product not found. Id: " + productDTO.getId());
         }
-        return ProductVO.create(this.productRepository.save(Product.create(productVO)));
+        return ProductDTO.create(this.productRepository.save(Product.create(productDTO)));
     }
 
     public void deleteById(Long id) {
@@ -40,7 +40,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    private ProductVO convertToProductVO(Product product) {
-        return ProductVO.create(product);
+    private ProductDTO convertToProductVO(Product product) {
+        return ProductDTO.create(product);
     }
 }

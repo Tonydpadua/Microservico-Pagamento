@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.tony.crud.product.Product;
 import lombok.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
@@ -13,8 +14,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(callSuper = false)
 @JsonPropertyOrder({"id","name","stock","price",})
-public class ProductVO implements Serializable {
+public class ProductDTO extends RepresentationModel<ProductDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +32,7 @@ public class ProductVO implements Serializable {
     @JsonProperty("price")
     private Double price;
 
-    public static ProductVO create(Product product) {
-        return new ModelMapper().map(product, ProductVO.class);
+    public static ProductDTO create(Product product) {
+        return new ModelMapper().map(product, ProductDTO.class);
     }
 }

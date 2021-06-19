@@ -1,6 +1,6 @@
 package com.tony.crud.product;
 
-import com.tony.crud.product.dto.ProductVO;
+import com.tony.crud.product.dto.ProductDTO;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -31,8 +31,8 @@ public class Product implements Serializable {
     @Column(name = "price", nullable = false, length = 10)
     private Double price;
 
-    public static Product create(ProductVO productVO) {
-        return new ModelMapper().map(productVO, Product.class);
+    public static Product create(ProductDTO productDTO) {
+        return new ModelMapper().map(productDTO, Product.class);
     }
 
 }
