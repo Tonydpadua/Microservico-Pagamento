@@ -15,7 +15,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public ProductDTO create(ProductDTO productDTO) {
+    public ProductDTO save(ProductDTO productDTO) {
         return ProductDTO.create(this.productRepository.save(Product.create(productDTO)));
     }
 

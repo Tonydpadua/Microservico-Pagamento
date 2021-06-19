@@ -11,7 +11,15 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.data.domain.Sort.Direction;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -26,7 +34,7 @@ public class ProductController {
     private final PagedResourcesAssembler<ProductDTO> assembler;
 
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml",})
-    public ProductDTO findById(@PathVariable Long id) {
+    public ProductDTO findById(@PathVariable("id") Long id) {
         ProductDTO productDTO = this.productService.findById(id);
         productDTO.add(linkTo(methodOn(ProductController.class).findById(id)).withSelfRel());
         return productDTO;
@@ -45,5 +53,27 @@ public class ProductController {
 
         PagedModel<EntityModel<ProductDTO>> pagedModel = this.assembler.toModel(products);
         return new ResponseEntity<>(pagedModel, HttpStatus.OK);
+    }
+
+    @PostMapping(produces = {"application/json", "application/xml", "application/x-yaml",},
+            consumes = {"application/json", "application/xml", "application/x-yaml",})
+    public ProductDTO save(@RequestBody ProductDTO productDTO) {
+        ProductDTO productDTOCreated = this.productService.save(productDTO);
+        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTO.getId())).withSelfRel());
+        return productDTOCreated;
+    }
+
+    @PutMapping(produces = {"application/json", "application/xml", "application/x-yaml",},
+            consumes = {"application/json", "application/xml", "application/x-yaml",})
+    public ProductDTO update(@RequestBody ProductDTO productDTO) {
+        ProductDTO productDTOCreated = this.productService.update(productDTO);
+        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTO.getId())).withSelfRel());
+        return productDTOCreated;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+        this.productService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

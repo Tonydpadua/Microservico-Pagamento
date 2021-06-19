@@ -3,7 +3,12 @@ package com.tony.crud.product.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.tony.crud.product.Product;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
