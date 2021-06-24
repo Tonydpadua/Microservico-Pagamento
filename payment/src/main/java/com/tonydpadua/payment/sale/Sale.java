@@ -46,6 +46,4 @@ public class Sale implements Serializable {
 
     @Column(name = "totalValue", nullable = false, length = 10)
     private Integer totalValue;
-
-
 }

@@ -43,6 +43,4 @@ public class SaleProduct implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_sale")
     private Sale sale;
-
-
 }

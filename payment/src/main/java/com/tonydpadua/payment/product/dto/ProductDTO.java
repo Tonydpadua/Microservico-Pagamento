@@ -1,8 +1,9 @@
-package com.tony.crud.product.dto;
+package com.tonydpadua.payment.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.tony.crud.product.Product;
+import com.tonydpadua.payment.product.Product;
+import com.tonydpadua.payment.sale.dto.SaleDTO;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,22 +21,17 @@ import java.io.Serializable;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder({"id","name","stock","price",})
-public class ProductDTO extends RepresentationModel<ProductDTO> implements Serializable {
+@JsonPropertyOrder({"id", "stock",})
+public class ProductDTO extends RepresentationModel<SaleDTO> implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("name")
-    private String name;
-
     @JsonProperty("stock")
     private Integer stock;
-
-    @JsonProperty("price")
-    private Double price;
 
     public static ProductDTO from(Product product) {
         return new ModelMapper().map(product, ProductDTO.class);

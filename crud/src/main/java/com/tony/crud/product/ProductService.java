@@ -16,7 +16,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public ProductDTO save(ProductDTO productDTO) {
-        return ProductDTO.create(this.productRepository.save(Product.create(productDTO)));
+        return ProductDTO.from(this.productRepository.save(Product.create(productDTO)));
     }
 
     public Page<ProductDTO> findAll(Pageable pageable) {
@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     public ProductDTO findById(Long id) {
-        return ProductDTO.create(this.productRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Product not found. Id: " + id)));
+        return ProductDTO.from(this.productRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Product not found. Id: " + id)));
     }
 
     public ProductDTO update(ProductDTO productDTO) {
@@ -32,7 +32,7 @@ public class ProductService {
         if (!optionalProduct.isPresent()) {
             throw new ObjectNotFoundException("Product not found. Id: " + productDTO.getId());
         }
-        return ProductDTO.create(this.productRepository.save(Product.create(productDTO)));
+        return ProductDTO.from(this.productRepository.save(Product.create(productDTO)));
     }
 
     public void deleteById(Long id) {
@@ -41,6 +41,6 @@ public class ProductService {
     }
 
     private ProductDTO convertToProductVO(Product product) {
-        return ProductDTO.create(product);
+        return ProductDTO.from(product);
     }
 }
