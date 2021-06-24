@@ -43,8 +43,8 @@ public class Sale implements Serializable {
     @Column(name = "saleDate", nullable = false, length = 10)
     private Date saleDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = {CascadeType.REFRESH})
-    private List<SaleProduct> products;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sale", cascade = {CascadeType.REFRESH})
+    private List<SaleProduct> saleProducts;
 
     @Column(name = "totalValue", nullable = false, length = 10)
     private Integer totalValue;

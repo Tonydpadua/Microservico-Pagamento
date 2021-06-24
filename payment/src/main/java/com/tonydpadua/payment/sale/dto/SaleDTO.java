@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder({"id", "saleDate", "products", "totalValue",})
+@JsonPropertyOrder({"id", "saleDate", "saleProducts", "totalValue",})
 public class SaleDTO extends RepresentationModel<SaleDTO> implements Serializable {
 
 
@@ -35,8 +35,8 @@ public class SaleDTO extends RepresentationModel<SaleDTO> implements Serializabl
     @JsonProperty("saleDate")
     private Date saleDate;
 
-    @JsonProperty("saleProduct")
-    private List<SaleProductDTO> saleProductDTOS;
+    @JsonProperty("saleProducts")
+    private List<SaleProductDTO> saleProducts;
 
     @JsonProperty("totalValue")
     private Integer totalValue;

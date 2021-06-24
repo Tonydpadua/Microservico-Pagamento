@@ -24,12 +24,12 @@ public class SaleService {
         Sale sale = this.saleRepository.save(Sale.from(saleDTO));
 
         List<SaleProduct> saleProductsSaved = new ArrayList<>();
-        saleDTO.getSaleProductDTOS().forEach(saleProductDTO -> {
+        saleDTO.getSaleProducts().forEach(saleProductDTO -> {
             SaleProduct saleProduct = SaleProduct.from(saleProductDTO);
             saleProduct.setSale(sale);
             saleProductsSaved.add(this.saleProductRepository.save(saleProduct));
         });
-        sale.setProducts(saleProductsSaved);
+        sale.setSaleProducts(saleProductsSaved);
 
         return SaleDTO.from(sale);
     }

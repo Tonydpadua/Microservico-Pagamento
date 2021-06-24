@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder({"id", "idProduct", "quantity", "sale"})
+@JsonPropertyOrder({"id", "idProduct", "quantity"})
 public class SaleProductDTO extends RepresentationModel<SaleDTO> implements Serializable {
 
 
@@ -36,9 +36,6 @@ public class SaleProductDTO extends RepresentationModel<SaleDTO> implements Seri
 
     @JsonProperty("quantity")
     private Integer quantity;
-
-    @JsonProperty("sale")
-    private SaleDTO saleDTO;
 
     public static SaleProductDTO from(SaleProduct saleProduct) {
         return new ModelMapper().map(saleProduct, SaleProductDTO.class);
