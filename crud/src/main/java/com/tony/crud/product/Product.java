@@ -40,8 +40,7 @@ public class Product implements Serializable {
     @Column(name = "price", nullable = false, length = 10)
     private Double price;
 
-    public static Product create(ProductDTO productDTO) {
+    public static Product from(ProductDTO productDTO) {
         return new ModelMapper().map(productDTO, Product.class);
     }
-
 }

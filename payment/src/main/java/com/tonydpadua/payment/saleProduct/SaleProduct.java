@@ -1,11 +1,13 @@
 package com.tonydpadua.payment.saleProduct;
 
 import com.tonydpadua.payment.sale.Sale;
+import com.tonydpadua.payment.saleProduct.dto.SaleProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,4 +45,8 @@ public class SaleProduct implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_sale")
     private Sale sale;
+
+    public static SaleProduct from(SaleProductDTO saleProductDTO) {
+        return new ModelMapper().map(saleProductDTO, SaleProduct.class);
+    }
 }

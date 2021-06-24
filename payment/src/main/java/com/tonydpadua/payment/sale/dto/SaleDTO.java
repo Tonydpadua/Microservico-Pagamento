@@ -3,7 +3,7 @@ package com.tonydpadua.payment.sale.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.tonydpadua.payment.sale.Sale;
-import com.tonydpadua.payment.saleProduct.SaleProduct;
+import com.tonydpadua.payment.saleProduct.dto.SaleProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,8 +35,8 @@ public class SaleDTO extends RepresentationModel<SaleDTO> implements Serializabl
     @JsonProperty("saleDate")
     private Date saleDate;
 
-    @JsonProperty("products")
-    private List<SaleProduct> products;
+    @JsonProperty("saleProduct")
+    private List<SaleProductDTO> saleProductDTOS;
 
     @JsonProperty("totalValue")
     private Integer totalValue;

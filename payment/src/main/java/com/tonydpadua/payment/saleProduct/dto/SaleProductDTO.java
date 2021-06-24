@@ -37,8 +37,8 @@ public class SaleProductDTO extends RepresentationModel<SaleDTO> implements Seri
     @JsonProperty("quantity")
     private Integer quantity;
 
-    @JsonProperty("totalValue")
-    private Sale sale;
+    @JsonProperty("sale")
+    private SaleDTO saleDTO;
 
     public static SaleProductDTO from(SaleProduct saleProduct) {
         return new ModelMapper().map(saleProduct, SaleProductDTO.class);

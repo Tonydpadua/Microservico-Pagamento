@@ -1,10 +1,12 @@
 package com.tonydpadua.payment.product;
 
+import com.tonydpadua.payment.product.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Setter
 @ToString
 @Entity
-@Table(name = "sale")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -25,4 +27,8 @@ public class Product {
 
     @Column(name = "stock", nullable = false, length = 10)
     private Integer stock;
+
+    public static Product from(ProductDTO productDTO) {
+        return new ModelMapper().map(productDTO, Product.class);
+    }
 }

@@ -1,11 +1,13 @@
 package com.tonydpadua.payment.sale;
 
+import com.tonydpadua.payment.sale.dto.SaleDTO;
 import com.tonydpadua.payment.saleProduct.SaleProduct;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -46,4 +48,8 @@ public class Sale implements Serializable {
 
     @Column(name = "totalValue", nullable = false, length = 10)
     private Integer totalValue;
+
+    public static Sale from(SaleDTO saleDTO) {
+        return new ModelMapper().map(saleDTO, Sale.class);
+    }
 }
