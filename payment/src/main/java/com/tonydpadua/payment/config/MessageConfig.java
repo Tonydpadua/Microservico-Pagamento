@@ -1,4 +1,4 @@
-package com.tony.crud.config;
+package com.tonydpadua.payment.config;
 
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.ExchangeBuilder;

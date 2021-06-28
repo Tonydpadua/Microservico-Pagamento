@@ -19,6 +19,11 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
 
 crud:
   rabbitmq:

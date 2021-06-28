@@ -1,5 +1,6 @@
 package com.tony.crud.product;
 
+import com.tony.crud.config.ProductSendMessage;
 import com.tony.crud.exceptions.ObjectNotFoundException;
 import com.tony.crud.product.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductService {
 
+
     private final ProductRepository productRepository;
+    private final ProductSendMessage productSendMessage;
 
     public ProductDTO save(ProductDTO productDTO) {
+        this.productSendMessage.sendMessage(productDTO);
         return ProductDTO.from(this.productRepository.save(Product.from(productDTO)));
     }
 
