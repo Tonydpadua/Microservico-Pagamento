@@ -19,7 +19,7 @@ public class ProductService {
     private final ProductSendMessage productSendMessage;
 
     public ProductDTO save(ProductDTO productDTO) {
-        this.productSendMessage.sendMessage(productDTO);
+        this.productSendMessage.sendMessage(ProductDTO.from(this.productRepository.save(Product.from(productDTO))));
         return ProductDTO.from(this.productRepository.save(Product.from(productDTO)));
     }
 
