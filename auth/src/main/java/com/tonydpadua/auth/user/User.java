@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -68,7 +69,10 @@ public class User implements UserDetails, Serializable {
     }
 
     public List<String> getRoles() {
-        return null;
+        List<String> roles = new ArrayList<>();
+        this.permissions.stream()
+                .forEach(permission -> roles.add(permission.getDescription()));
+        return roles;
     }
 
     @Override
