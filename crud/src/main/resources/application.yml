@@ -28,9 +28,16 @@ spring:
 crud:
   rabbitmq:
     exchange: crud.exchange
-    routingkey: crud.product.routingkey]
+    routingkey: crud.product.routingkey
+
 security:
   jwt:
     token:
       secret-key: microservice_key
 
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/registry/eureka/
