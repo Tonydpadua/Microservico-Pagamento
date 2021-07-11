@@ -24,10 +24,12 @@ spring:
     port: 5672
     username: admin
     password: admin
+
 crud:
   rabbitmq:
     exchange: crud.exchange
     queue: crud.product.queue
+
 security:
   jwt:
     token:
