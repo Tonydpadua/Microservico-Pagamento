@@ -1,11 +1,10 @@
-package com.tonydpadua.auth.config;
+package com.tony.crud.config;
 
-import com.tonydpadua.auth.jwt.JwtConfigurer;
-import com.tonydpadua.auth.jwt.JwtTokenProvider;
+import com.tony.crud.jwt.JwtConfigurer;
+import com.tony.crud.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,14 +17,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private final JwtTokenProvider jwtTokenProvider;
-
-    private static final String[] PUBLIC_MATCHES={
-            "/h2-console/**"
-    };
-
-    private static final String[] PUBLIC_MATCHES_POST={
-            "/login"
-    };
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -46,9 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,PUBLIC_MATCHES_POST).permitAll()
-                .antMatchers(PUBLIC_MATCHES).permitAll()
-                .antMatchers("/h2-console/login.do").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(this.jwtTokenProvider));

@@ -76,11 +76,6 @@ public class User implements UserDetails, Serializable {
     }
 
     @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
     public String getUsername() {
         return this.userName;
     }

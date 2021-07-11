@@ -1,4 +1,4 @@
-package com.tonydpadua.auth.jwt;
+package com.tony.crud.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
