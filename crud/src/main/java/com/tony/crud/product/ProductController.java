@@ -35,9 +35,7 @@ public class ProductController {
 
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml",})
     public ProductDTO findById(@PathVariable("id") Long id) {
-        ProductDTO productDTO = this.productService.findById(id);
-        productDTO.add(linkTo(methodOn(ProductController.class).findById(id)).withSelfRel());
-        return productDTO;
+        return this.productService.findById(id);
     }
 
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml",})
@@ -58,17 +56,13 @@ public class ProductController {
     @PostMapping(produces = {"application/json", "application/xml", "application/x-yaml",},
             consumes = {"application/json", "application/xml", "application/x-yaml",})
     public ProductDTO save(@RequestBody ProductDTO productDTO) {
-        ProductDTO productDTOCreated = this.productService.save(productDTO);
-        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTOCreated.getId())).withSelfRel());
-        return productDTOCreated;
+        return this.productService.save(productDTO);
     }
 
     @PutMapping(produces = {"application/json", "application/xml", "application/x-yaml",},
             consumes = {"application/json", "application/xml", "application/x-yaml",})
     public ProductDTO update(@RequestBody ProductDTO productDTO) {
-        ProductDTO productDTOCreated = this.productService.update(productDTO);
-        productDTOCreated.add(linkTo(methodOn(ProductController.class).findById(productDTO.getId())).withSelfRel());
-        return productDTOCreated;
+        return this.productService.update(productDTO);
     }
 
     @DeleteMapping(value = "/{id}")
